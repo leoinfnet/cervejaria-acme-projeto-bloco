@@ -1,0 +1,4 @@
+application:
+  name: pedido-service
+server:
+  port: 8083
