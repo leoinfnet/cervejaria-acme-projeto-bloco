@@ -1,7 +1,7 @@
-application:
-  name: cerveja-service
+app:
+  myport: ${PORT:0}
 server:
-  port: 8081
+  port: ${app.myport}
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -17,3 +17,8 @@ spring:
     show-sql: false
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+  application:
+    name: cerveja-service
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

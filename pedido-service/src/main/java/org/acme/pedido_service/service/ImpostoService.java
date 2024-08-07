@@ -2,6 +2,7 @@ package org.acme.pedido_service.service;
 
 import lombok.RequiredArgsConstructor;
 import org.acme.pedido_service.model.Pedido;
+import org.acme.pedido_service.service.feign.ImpostoClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -9,7 +10,10 @@ import org.springframework.web.client.RestClient;
 @Service
 @RequiredArgsConstructor
 public class ImpostoService {
+    private final ImpostoClient impostoClient;
     public ImpostoResponsePayload getTotalImposto(Pedido pedido){
+        return impostoClient.calcularImposto(pedido);
+        /*
         var serverUrl = "http://localhost:8084";
         RestClient client = RestClient.create();
         return client.post()
@@ -18,5 +22,7 @@ public class ImpostoService {
                 .body(pedido)
                 .retrieve()
                 .toEntity(ImpostoResponsePayload.class).getBody();
+
+       */
     }
 }
